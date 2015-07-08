@@ -9,24 +9,26 @@
     <div>
       <button type="button" id="GetNewTweets">Get New Tweets</button>
     </div>
-    <div id="tweets">
+    <div id="tweetContainer">
       <script>
         $(document).ready(function(){
-          var $tweets = $("#tweets");
+          var $tweets = $("#tweetContainer");
           displayTweets();
 
+          // function to refresh all tweets
           function displayTweets() {
             $tweets.html('');
             var index = streams.home.length - 1;
             while(index >= 0){
               var tweet = streams.home[index];
-              var $tweet = $("<div class="+tweet.user+"></div>");
-              $tweet.text("[ "+tweet.created_at + "] @" + tweet.user + ': ' + tweet.message);
+              var $tweet = $("<div class='"+"tweet "+tweet.user+"'></div>");
+              $tweet.html("[ "+tweet.created_at + "] @" + "<span class='username'>"+tweet.user + '</span>: ' + tweet.message);
               $tweet.appendTo($tweets);
               index -= 1;
             }
           }
 
+          // button handling to refresh tweets
           $("#GetNewTweets").on("click", function() {
             displayTweets();
           });
