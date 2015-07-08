@@ -3,11 +3,12 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" href="main.css">
     <title>Twittler</title>
   </head>
   <body>
-    <div>
-      <button type="button" id="GetNewTweets">Get New Tweets</button>
+    <div id=navigation>
+      <button type="button" id="getNewTweets">Get New Tweets</button>
     </div>
     <div id="tweetContainer">
       <script>
@@ -31,7 +32,7 @@
           }
 
           // button handling to refresh tweets
-          $("#GetNewTweets").on("click", function() {
+          $("#getNewTweets").on("click", function() {
             displayTweets();
           });
 
