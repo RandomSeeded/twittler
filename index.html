@@ -23,6 +23,7 @@
               var tweet = streams.home[index];
               var $tweet = $("<div class='"+"tweet "+tweet.user+"'></div>");
               $tweet.html("[ "+tweet.created_at + "] @" + "<span class='username'>"+tweet.user + '</span>: ' + tweet.message);
+              $tweet.data("user", tweet.user);
               $tweet.appendTo($tweets);
               index -= 1;
             }
@@ -31,6 +32,13 @@
           // button handling to refresh tweets
           $("#GetNewTweets").on("click", function() {
             displayTweets();
+          });
+
+          // button to filter to select user
+          $(".username").on("click", function() {
+            var user = $(this).closest('.tweet').data("user");
+            $(".tweet").hide();
+            $("."+user).show();
           });
         });
       </script>
