@@ -2,9 +2,14 @@ body {
   background: darkblue;
 }
 .tweet {
-  background: lightblue;
-  margin: 2px;
+  background: teal;
+  margin: 6px;
+  border-radius: 4px;
 }
 #navigation {
   text-align: center;
+}
+.username {
+  text-decoration: underline;
+  color: cyan;
 }

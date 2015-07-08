@@ -8,7 +8,7 @@
   </head>
   <body>
     <div id=navigation>
-      <button type="button" id="getNewTweets">Get New Tweets</button>
+      <button type="button" id="getNewTweets">Update Tweets</button>
     </div>
     <div id="tweetContainer">
       <script>
@@ -23,7 +23,7 @@
             while(index >= 0){
               var tweet = streams.home[index];
               var $tweet = $("<div class='"+"tweet "+tweet.user+"'></div>");
-              $tweet.html("[ "+tweet.created_at + "] @" + "<span class='username'>"+tweet.user + '</span>: ' + tweet.message);
+              $tweet.html("[ "+tweet.created_at + "] <span class='username'>@"+tweet.user + '</span>: ' + tweet.message);
               $tweet.data("user", tweet.user);
               $tweet.appendTo($tweets);
               index -= 1;
@@ -39,7 +39,7 @@
           // button to filter to select user
           $("#tweetContainer").on("click", ".tweet .username", function() {
             var user = $(this).closest('.tweet').data("user");
-            $(".tweet").hide();
+            $(".tweet").not("."+user).slideUp();
             $("."+user).show();
           });
         });
