@@ -27,15 +27,19 @@
               $tweet.appendTo($tweets);
               index -= 1;
             }
+            $(".tweet").show();
           }
 
           // button handling to refresh tweets
+          // NOTE: as of now, clicking this button will break the ability to subsequently filter by user. You'll have to track down why
+          // NOTE2: if you don't clear the html, you can click the orig ones but not subsequent
+          // NOTE3: it appears that the original ones have events on them, the new ones dont. How do we re-scan?
           $("#GetNewTweets").on("click", function() {
             displayTweets();
           });
 
           // button to filter to select user
-          $(".username").on("click", function() {
+          $("#tweetContainer").on("click", ".tweet .username", function() {
             var user = $(this).closest('.tweet').data("user");
             $(".tweet").hide();
             $("."+user).show();
