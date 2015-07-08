@@ -1,0 +1,10 @@
+body {
+  background: darkblue;
+}
+.tweet {
+  background: lightblue;
+  margin: 2px;
+}
+#navigation {
+  text-align: center;
+}
