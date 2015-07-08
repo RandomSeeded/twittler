@@ -42,8 +42,7 @@
           // button to filter to select user
           $("#tweetContainer").on("click", ".tweet .username", function() {
             var user = $(this).closest('.tweet').data("user");
-            $(".tweet").not("."+user).slideUp();
-            $("."+user).show();
+            $(".tweet").not("."+user).slideToggle();
           });
         });
       </script>
