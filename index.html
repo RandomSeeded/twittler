@@ -8,20 +8,20 @@
     <title>Twittler</title>
   </head>
   <body>
-    <div id=navigation>
-    </div>
     <div id="tweetContainer">
       <script>
+        const maxTweets = 15;
+
         $(document).ready(function(){
           var $tweets = $("#tweetContainer");
           displayTweets();
-          setInterval(displayTweets, 1000);
+          setInterval(displayTweets, 100);
 
           // function to refresh all tweets
           function displayTweets() {
             $tweets.html('');
             var index = streams.home.length - 1;
-            while(index >= 0) {
+            while(index >= 0 && (streams.home.length-index <= maxTweets)) {
               var tweet = streams.home[index];
               var $tweet = $("<div class='"+"tweet "+tweet.user+"'></div>");
               $tweet.html("[<span class='timeago' title='"+tweet.created_at.toISOString()+"'>"+tweet.created_at + "</span>] <span class='username'>@"+tweet.user + '</span>: ' + tweet.message);
@@ -33,11 +33,6 @@
           }
 
 
-          // button handling to refresh tweets
-          $("#getNewTweets").on("click", function() {
-            displayTweets();
-          });
-
           // button to filter to select user
           $("#tweetContainer").on("click", ".tweet .username", function() {
             var user = $(this).closest('.tweet').data("user");
@@ -45,6 +40,8 @@
           });
         });
       </script>
+    </div>
+    <div id=navigation>
     </div>
   </body>
 </html>
