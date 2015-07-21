@@ -10,7 +10,7 @@
   <body>
     <div id="tweetContainer">
       <script>
-        const maxTweets = 15;
+        var maxTweets = 10;
 
         $(document).ready(function(){
           var $tweets = $("#tweetContainer");
@@ -31,7 +31,11 @@
             }
             $(".timeago").timeago();
           }
-
+          
+          // button to increase maximum number of tweets to display
+          $("#getMoreTweets").on("click", function() {
+            maxTweets+=10;
+          });
 
           // button to filter to select user
           $("#tweetContainer").on("click", ".tweet .username", function() {
@@ -42,6 +46,7 @@
       </script>
     </div>
     <div id=navigation>
+      <button type="button" id="getMoreTweets">Display More Tweets</button>
     </div>
   </body>
 </html>
