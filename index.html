@@ -9,13 +9,13 @@
   </head>
   <body>
     <div id=navigation>
-      <button type="button" id="getNewTweets">Update Tweets</button>
     </div>
     <div id="tweetContainer">
       <script>
         $(document).ready(function(){
           var $tweets = $("#tweetContainer");
           displayTweets();
+          setInterval(displayTweets, 1000);
 
           // function to refresh all tweets
           function displayTweets() {
@@ -29,7 +29,6 @@
               $tweet.appendTo($tweets);
               index -= 1;
             }
-            $(".tweet").show();
             $(".timeago").timeago();
           }
 
