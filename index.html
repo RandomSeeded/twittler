@@ -17,9 +17,9 @@
         $(document).ready(function(){
           var $tweets = $("#tweetContainer");
           displayTweets();
-          setInterval(displayTweets, 1000);
+          setInterval(displayTweets, 100);
 
-          // function to refresh all tweets
+          // all-purpose function for displaying tweets
           function displayTweets() {
             $tweets.html('');
             var index = streams.home.length - 1;
