@@ -49,8 +49,8 @@
           // button to filter to select user
           $("#tweetContainer").on("click", ".tweet .username", function() {
             user = $(this).closest('.tweet').data("user");
-            $(".tweet").not("."+user).slideToggle();
             toggleFilteredUser(user);
+            displayTweets();
           });
 
           function toggleFilteredUser(user) {

@@ -1,8 +1,8 @@
 body {
-  background: #004;
+  background: #67727A;
 }
 .tweet {
-  background: teal;
+  background: #6991AC;
   margin: 4px;
   border-radius: 4px;
 }
@@ -11,5 +11,6 @@ body {
 }
 .username {
   text-decoration: underline;
-  color: cyan;
+  color: #C3D7DF;
+  /*color: #D75C37;*/
 }
