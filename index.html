@@ -10,22 +10,30 @@
   <body>
     <div id="tweetContainer">
       <script>
+        // variable initialization
         var maxTweets = 10;
+        var filteredUser = null;
 
         $(document).ready(function(){
           var $tweets = $("#tweetContainer");
           displayTweets();
-          setInterval(displayTweets, 100);
+          setInterval(displayTweets, 1000);
 
           // function to refresh all tweets
           function displayTweets() {
             $tweets.html('');
             var index = streams.home.length - 1;
-            while(index >= 0 && (streams.home.length-index <= maxTweets)) {
+            var displayedTweets = 0;
+            while(index >= 0 && (displayedTweets <= maxTweets)) {
               var tweet = streams.home[index];
               var $tweet = $("<div class='"+"tweet "+tweet.user+"'></div>");
               $tweet.html("[<span class='timeago' title='"+tweet.created_at.toISOString()+"'>"+tweet.created_at + "</span>] <span class='username'>@"+tweet.user + '</span>: ' + tweet.message);
               $tweet.data("user", tweet.user);
+              if (filteredUser === null || filteredUser === tweet.user) { 
+                $tweet.show(); 
+                displayedTweets++;
+              }
+              else { $tweet.hide(); }
               $tweet.appendTo($tweets);
               index -= 1;
             }
@@ -35,13 +43,20 @@
           // button to increase maximum number of tweets to display
           $("#getMoreTweets").on("click", function() {
             maxTweets+=10;
+            displayTweets();
           });
 
           // button to filter to select user
           $("#tweetContainer").on("click", ".tweet .username", function() {
-            var user = $(this).closest('.tweet').data("user");
+            user = $(this).closest('.tweet').data("user");
             $(".tweet").not("."+user).slideToggle();
+            toggleFilteredUser(user);
           });
+
+          function toggleFilteredUser(user) {
+            if (filteredUser === null) { filteredUser = user; }
+            else { filteredUser = null; }
+          }
         });
       </script>
     </div>
